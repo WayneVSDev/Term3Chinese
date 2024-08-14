@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Flashcards</title>
+  <style>
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: #f4f7f6;
+    }
+    .switch-button {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #8e44ad;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .card-container {
+      display: grid;
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+    }
+    .card {
+      background-color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(145deg, #fdebd0, #f4d03f);
+      /* Adding a stronger drop shadow via filter. Adjust values as desired */
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .hidden {
+      display: none;
+    }
+    .chinese {
+      font-weight: bold;
+      color: #34495e;
+      margin-bottom: 10px;
+    }
+    .English, .japanese, .katakana {
+      font-weight: normal;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+
+<body>
+    <button class="switch-button" onclick="switchLanguage()"><b style="color: yellow">English</b> => Japanese => French</button>
+    <audio id="sound-effect" src="Ring01.mp3"></audio>
+    <div class="card-container">
+        <div class="card" onclick="reveal(this)">
+            <div class="chinese">龙</div>
+            <div class="english hidden">Dragon</div>
+            <div class="japanese hidden">龍 (りゅう)</div>
+            <div class="katakana hidden">ドラゴン</div>
+            <div class="french hidden">Dragon</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">龙婆啊</div>
+            <div class="english hidden">Emperor</div>
+            <div class="japanese hidden">皇帝 (こうてい)</div>
+            <div class="katakana hidden">エンペラー</div>
+            <div class="french hidden">Empereur</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">力量</div>
+            <div class="english hidden">Power</div>
+            <div class="japanese hidden">力 (ちから)</div>
+            <div class="katakana hidden">パワー</div>
+            <div class="french hidden">Puissance</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">财富</div>
+            <div class="english hidden">Wealth</div>
+            <div class="japanese hidden">富 (とみ)</div>
+            <div class="katakana hidden">ウェルス</div>
+            <div class="french hidden">Richesse</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">力量</div>
+            <div class="english hidden">Strength</div>
+            <div class="japanese hidden">力 (ちから)</div>
+            <div class="katakana hidden">ストレングス</div>
+            <div class="french hidden">Force</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">祝你好运</div>
+            <div class="english hidden">Goodluck</div>
+            <div class="japanese hidden">幸運を祈ります (こううんをいのります)</div>
+            <div class="katakana hidden">グッドラック</div>
+            <div class="french hidden">Bonne chance</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">健康</div>
+            <div class="english hidden">Health</div>
+            <div class="japanese hidden">健康 (けんこう)</div>
+            <div class="katakana hidden">ヘルス</div>
+            <div class="french hidden">Santé</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">自豪</div>
+            <div class="english hidden">Pride</div>
+            <div class="japanese hidden">誇り (ほこり)</div>
+            <div class="katakana hidden">プライド</div>
+            <div class="french hidden">Fierté</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">勇气</div>
+            <div class="english hidden">Courage</div>
+            <div class="japanese hidden">勇気 (ゆうき)</div>
+            <div class="katakana hidden">カレッジ</div>
+            <div class="french hidden">Courage</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">繁荣</div>
+            <div class="english hidden">Prosperity</div>
+            <div class="japanese hidden">繁栄 (はんえい)</div>
+            <div class="katakana hidden">プロスペリティ</div>
+            <div class="french hidden">Prospérité</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">保护</div>
+            <div class="english hidden">Protection</div>
+            <div class="japanese hidden">保護 (ほご)</div>
+            <div class="katakana hidden">プロテクション</div>
+            <div class="french hidden">Protection</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">龙马精神</div>
+            <div class="english hidden">Dragon Horse Spirit</div>
+            <div class="japanese hidden">龍馬精神 (りゅうませいしん)</div>
+            <div class="katakana hidden">ドラゴンホーススピリット</div>
+            <div class="french hidden">Esprit du Cheval Dragon</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">熊猫</div>
+            <div class="english hidden">Panda</div>
+            <div class="japanese hidden">パンダ</div>
+            <div class="katakana hidden">パンダ</div>
+            <div class="french hidden">Panda</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">友谊</div>
+            <div class="english hidden">Friendship</div>
+            <div class="japanese hidden">友情 (ゆうじょう)</div>
+            <div class="katakana hidden">フレンドシップ</div>
+            <div class="french hidden">Amitié</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">阴阳</div>
+            <div class="english hidden">Yin and Yang</div>
+            <div class="japanese hidden">陰陽 (いんよう)</div>
+            <div class="katakana hidden">インとヨウ</div>
+            <div class="french hidden">Yin et Yang</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">和平</div>
+            <div class="english hidden">Peace</div>
+            <div class="japanese hidden">平和 (へいわ)</div>
+            <div class="katakana hidden">ピース</div>
+            <div class="french hidden">Paix</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">喜鹊</div>
+            <div class="english hidden">Magpie</div>
+            <div class="japanese hidden">カササギ</div>
+            <div class="katakana hidden">マグパイ</div>
+            <div class="french hidden">Pie</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">叫喜事到</div>
+            <div class="english hidden">Messenger of Joy</div>
+            <div class="japanese hidden">喜びの使者 (よろこびのししゃ)</div>
+            <div class="katakana hidden">メッセンジャーオブジョイ</div>
+            <div class="french hidden">Messager de Joie</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">祝你好运</div>
+            <div class="english hidden">Goodluck</div>
+            <div class="japanese hidden">幸運を祈ります (こううんをいのります)</div>
+            <div class="katakana hidden">グッドラック</div>
+            <div class="french hidden">Bonne chance</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">福</div>
+            <div class="english hidden">Good fortune</div>
+            <div class="japanese hidden">福 (ふく)</div>
+            <div class="katakana hidden">グッドフォーチュン</div>
+            <div class="french hidden">Bonne fortune</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">幸福</div>
+            <div class="english hidden">Happiness</div>
+            <div class="japanese hidden">幸福 (こうふく)</div>
+            <div class="katakana hidden">ハピネス</div>
+            <div class="french hidden">Bonheur</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">竹子</div>
+            <div class="english hidden">Bamboo</div>
+            <div class="japanese hidden">竹 (たけ)</div>
+            <div class="katakana hidden">バンブー</div>
+            <div class="french hidden">Bambou</div>
+          </div>
+
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">诚实</div>
+            <div class="english hidden">Honesty</div>
+            <div class="japanese hidden">誠実 (せいじつ)</div>
+            <div class="katakana hidden">オネスティ</div>
+            <div class="french hidden">Honnêteté</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">简单</div>
+            <div class="english hidden">Simplicity</div>
+            <div class="japanese hidden">簡単 (かんたん)</div>
+            <div class="katakana hidden">シンプリシティ</div>
+            <div class="french hidden">Simplicité</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">诚信成长</div>
+            <div class="english hidden">Honest growth</div>
+            <div class="japanese hidden">誠実な成長 (せいじつなせいちょう)</div>
+            <div class="katakana hidden">オネストグロース</div>
+            <div class="french hidden">Croissance honnête</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">力量</div>
+            <div class="english hidden">Strength</div>
+            <div class="japanese hidden">力 (ちから)</div>
+            <div class="katakana hidden">ストレングス</div>
+            <div class="french hidden">Force</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">长寿</div>
+            <div class="english hidden">Long life</div>
+            <div class="japanese hidden">長寿 (ちょうじゅ)</div>
+            <div class="katakana hidden">ロングライフ</div>
+            <div class="french hidden">Longue vie</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">湿度</div>
+            <div class="english hidden">Humidity</div>
+            <div class="japanese hidden">湿度 (しつど)</div>
+            <div class="katakana hidden">ヒューミディティ</div>
+            <div class="french hidden">Humidité</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">胸有成竹</div>
+            <div class="english hidden">Lot of confidence</div>
+            <div class="japanese hidden">自信満々 (じしんまんまん)</div>
+            <div class="katakana hidden">ロットオブコンフィデンス</div>
+            <div class="french hidden">Beaucoup de confiance</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">美丽</div>
+            <div class="english hidden">Lotus flower</div>
+            <div class="japanese hidden">蓮の花 (はすのはな)</div>
+            <div class="katakana hidden">ロータスフラワー</div>
+            <div class="french hidden">Fleur de lotus</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">纯度</div>
+            <div class="english hidden">Beauty</div>
+            <div class="japanese hidden">美しさ (うつくしさ)</div>
+            <div class="katakana hidden">ビューティー</div>
+            <div class="french hidden">Beauté</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">优雅</div>
+            <div class="english hidden">Purity</div>
+            <div class="japanese hidden">純粋 (じゅんすい)</div>
+            <div class="katakana hidden">ピュリティ</div>
+            <div class="french hidden">Pureté</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">优雅</div>
+            <div class="english hidden">Grace</div>
+            <div class="japanese hidden">優雅 (ゆうが)</div>
+            <div class="katakana hidden">グレース</div>
+            <div class="french hidden">Grâce</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">重生</div>
+            <div class="english hidden">Rebirth</div>
+            <div class="japanese hidden">再生 (さいせい)</div>
+            <div class="katakana hidden">リバース</div>
+            <div class="french hidden">Renaissance</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">干净的</div>
+            <div class="english hidden">Clean</div>
+            <div class="japanese hidden">清潔 (せいけつ)</div>
+            <div class="katakana hidden">クリーン</div>
+            <div class="french hidden">Propre</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">弹力</div>
+            <div class="english hidden">Resilience</div>
+            <div class="japanese hidden">弾力 (だんりょく)</div>
+            <div class="katakana hidden">レジリエンス</div>
+            <div class="french hidden">Résilience</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">精美的</div>
+            <div class="english hidden">Delicate</div>
+            <div class="japanese hidden">繊細 (せんさい)</div>
+            <div class="katakana hidden">デリケート</div>
+            <div class="french hidden">Délicat</div>
+          </div>
+          
+          <div class="card" onclick="reveal(this)">
+            <div class="chinese">超越</div>
+            <div class="english hidden">Transcendence</div>
+            <div class="japanese hidden">超越 (ちょうえつ)</div>
+            <div class="katakana hidden">トランセンデンス</div>
+            <div class="french hidden">Transcendance</div>
+          </div>
+    </div>
+    
+  
+    <script>
+      let mainLanguage = 'chinese';
+      let currentLanguage = 'english'; // Initial language
+
+      function switchLanguage() {
+        const button = document.querySelector(".switch-button");
+        const cards = document.querySelectorAll(".card");
+
+        const languages = ['english', 'japanese', 'french'];
+        const buttonTexts = [
+          '<b style="color: yellow">English</b> => Japanese => French', 
+          'English => <b style="color: yellow">Japanese</b> => French', 
+          'English => Japanese => <b style="color: yellow">French</b>'];
+
+        const currentIndex = languages.indexOf(currentLanguage);
+        const newIndex = (currentIndex + 1) % languages.length;
+        currentLanguage = languages[newIndex];
+
+        button.innerHTML = buttonTexts[newIndex];
+        document.querySelectorAll('.card').forEach(card => {
+          card.classList.remove('revealed');
+          card.querySelector('.english').classList.add('hidden');
+          card.querySelector('.japanese').classList.add('hidden');
+          card.querySelector('.katakana').classList.add('hidden');
+          card.querySelector('.french').classList.add('hidden'); // Hide French as well
+        });
+        // Play the sound effect
+        document.getElementById('sound-effect').play(); // Add this line
+      }
+
+      function reveal(card) {
+        if (!card.classList.contains('revealed')) {
+          card.classList.add('revealed');
+          
+          speakText(card.querySelector(`.${mainLanguage}`).textContent, getLanguageCode(mainLanguage));
+          card.querySelector(`.${currentLanguage}`).classList.remove('hidden');
+          if (currentLanguage === 'japanese'){
+            card.querySelector('.katakana').classList.remove('hidden');
+          }
+          speakText(card.querySelector(`.${currentLanguage}`).textContent, getLanguageCode(currentLanguage));
+        } else {
+          card.classList.remove('revealed');
+          card.querySelector('.english').classList.add('hidden');
+          card.querySelector('.japanese').classList.add('hidden');
+          card.querySelector('.katakana').classList.add('hidden');
+          card.querySelector('.french').classList.add('hidden'); // Hide French on close as well
+        }
+      }
+
+      function getLanguageCode(language) {
+        switch (language) {
+          case 'chinese':
+            return 'zh-CN';
+          case 'english':
+            return 'en-US';
+          case 'japanese':
+            return 'ja-JP';
+          case 'french':
+            return 'fr-FR'; // Assuming French audio should be in French
+          default:
+            return null;
+        }
+      }
+  
+      function speakText(text, lang) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        window.speechSynthesis.speak(utterance);
+      }
+    </script>
+  </body>
+</html>
