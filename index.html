@@ -28,7 +28,7 @@
       gap: 20px;
       width: 100%;
       max-width: 1200px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
     }
     .card {
       background-color: #fff;
@@ -42,8 +42,8 @@
       flex-direction: column;
       justify-content: center;
       background: linear-gradient(145deg, #fdebd0, #f4d03f);
+      /* Adding a stronger drop shadow via filter. Adjust values as desired */
       filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-      min-height: 150px; /* Ensure a minimum height for the cards */
     }
     .card:hover {
       transform: scale(1.05);
@@ -55,24 +55,22 @@
       font-weight: bold;
       color: #34495e;
       margin-bottom: 5px;
-      font-size: 24px; /* Increase font size for visibility */
     }
     .hanyupinyin {
       font-style: italic;
       color: #7f8c8d;
       margin-bottom: 10px;
     }
-    .english, .japanese, .katakana, .french, .german {
+    .english, .japanese, .katakana, .french {
       font-weight: normal;
       color: #7f8c8d;
-      font-size: 18px; /* Increase font size for visibility */
     }
   </style>
 </head>
 
 <body>
-    <button class="switch-button" onclick="switchLanguage()"><b style="color: yellow">English</b> => Japanese => French => German</button>
-    <audio id="sound-effect" src="/api/placeholder/400/320" alt="placeholder" />
+    <button class="switch-button" onclick="switchLanguage()"><b style="color: yellow">English</b> => Japanese => French</button>
+    <audio id="sound-effect" src="Ring01.mp3"></audio>
     <div class="card-container">
           <div class="card" onclick="reveal(this)">
             <div class="chinese">力量</div>
@@ -80,7 +78,6 @@
             <div class="japanese hidden">力 (ちから)</div>
             <div class="katakana hidden">パワー</div>
             <div class="french hidden">Puissance</div>
-            <div class="german hidden">Kraft</div>
           </div>
           
           <div class="card" onclick="reveal(this)">
@@ -89,10 +86,8 @@
             <div class="japanese hidden">富 (とみ)</div>
             <div class="katakana hidden">ウェルス</div>
             <div class="french hidden">Richesse</div>
-            <div class="german hidden">Reichtum</div>
           </div>
     </div>
-    
   
     <script>
       let mainLanguage = 'chinese';
@@ -102,12 +97,11 @@
         const button = document.querySelector(".switch-button");
         const cards = document.querySelectorAll(".card");
 
-        const languages = ['english', 'japanese', 'french', 'german'];
+        const languages = ['english', 'japanese', 'french'];
         const buttonTexts = [
-          '<b style="color: yellow">English</b> => Japanese => French => German', 
-          'English => <b style="color: yellow">Japanese</b> => French => German', 
-          'English => Japanese => <b style="color: yellow">French</b> => German',
-          'English => Japanese => French => <b style="color: yellow">German</b>'];
+          '<b style="color: yellow">English</b> => Japanese => French', 
+          'English => <b style="color: yellow">Japanese</b> => French', 
+          'English => Japanese => <b style="color: yellow">French</b>'];
 
         const currentIndex = languages.indexOf(currentLanguage);
         const newIndex = (currentIndex + 1) % languages.length;
@@ -120,7 +114,6 @@
           card.querySelector('.japanese').classList.add('hidden');
           card.querySelector('.katakana').classList.add('hidden');
           card.querySelector('.french').classList.add('hidden');
-          card.querySelector('.german').classList.add('hidden');
         });
         // Play the sound effect
         document.getElementById('sound-effect').play();
@@ -142,7 +135,6 @@
           card.querySelector('.japanese').classList.add('hidden');
           card.querySelector('.katakana').classList.add('hidden');
           card.querySelector('.french').classList.add('hidden');
-          card.querySelector('.german').classList.add('hidden');
         }
       }
 
@@ -156,8 +148,6 @@
             return 'ja-JP';
           case 'french':
             return 'fr-FR';
-          case 'german':
-            return 'de-DE';
           default:
             return null;
         }
