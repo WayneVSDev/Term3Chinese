@@ -441,11 +441,12 @@
         const button = document.querySelector(".switch-button");
         const cards = document.querySelectorAll(".card");
 
-        const languages = ['english', 'japanese', 'french'];
+        const languages = ['english', 'japanese', 'french', 'german'];
         const buttonTexts = [
-          '<b style="color: yellow">English</b> => Japanese => French', 
-          'English => <b style="color: yellow">Japanese</b> => French', 
-          'English => Japanese => <b style="color: yellow">French</b>'];
+          '<b style="color: yellow">English</b> => Japanese => French => German', 
+          'English => <b style="color: yellow">Japanese</b> => French => German', 
+          'English => Japanese => <b style="color: yellow">French</b> => German',
+          'English => Japanese => French => <b style="color: yellow">German</b>'];
 
         const currentIndex = languages.indexOf(currentLanguage);
         const newIndex = (currentIndex + 1) % languages.length;
@@ -458,6 +459,7 @@
           card.querySelector('.japanese').classList.add('hidden');
           card.querySelector('.katakana').classList.add('hidden');
           card.querySelector('.french').classList.add('hidden');
+          card.querySelector('.german').classList.add('hidden');
         });
         // Play the sound effect
         document.getElementById('sound-effect').play();
@@ -479,6 +481,7 @@
           card.querySelector('.japanese').classList.add('hidden');
           card.querySelector('.katakana').classList.add('hidden');
           card.querySelector('.french').classList.add('hidden');
+          card.querySelector('.german').classList.add('hidden');
         }
       }
 
@@ -492,6 +495,8 @@
             return 'ja-JP';
           case 'french':
             return 'fr-FR';
+          case 'german':
+            return 'de-DE';
           default:
             return null;
         }
